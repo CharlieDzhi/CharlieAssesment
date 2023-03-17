@@ -1,0 +1,105 @@
+@run
+Feature: Contact Us Page Feature
+
+  Scenario Outline: Verify that the contact form can be submitted successfully with all required fields filled in correctly. # Feature Files/SovTechFeatures/ContactUsFeature.feature:4
+    Given Given the User is on the contact us page
+    And User Enter Full Name "<FullName>"
+    And User Enter email "<Email>"
+    And User Enter Mobile number "<MobileNumber>"
+    And User Selects Company size "<CompanySize>"
+    And User Selects the type of service "<Services>"
+    And User Enter how can we help you text "<HelpText>"
+    When The user clicks on the Send message button
+    Then A success Message is displayed
+
+    Examples: 
+
+  @run
+  Scenario Outline: Verify that the contact form can be submitted successfully with all required fields filled in correctly. # Feature Files/SovTechFeatures/ContactUsFeature.feature:19
+    Given Given the User is on the contact us page                                                                           # ContactUsPageStepDefs.given_the_User_is_on_the_contact_us_page()
+    And User Enter Full Name "Farisani Nonyana"                                                                              # ContactUsPageStepDefs.user_Enter_Full_Name(String)
+    And User Enter email "rof@gmail.com"                                                                                     # ContactUsPageStepDefs.user_Enter_email(String)
+    And User Enter Mobile number "0794188672"                                                                                # ContactUsPageStepDefs.user_Enter_Mobile_number(String)
+    And User Selects Company size "1 - 25"                                                                                   # ContactUsPageStepDefs.user_Selects_Company_size(String)
+    And User Selects the type of service "Web App"                                                                           # ContactUsPageStepDefs.user_Selects_the_type_of_service(String)
+    And User Enter how can we help you text "Web automation using selenium and cucumber"                                     # ContactUsPageStepDefs.user_Enter_how_can_we_help_you_text(String)
+    When The user clicks on the Send message button                                                                          # ContactUsPageStepDefs.the_user_clicks_on_the_Send_message_button()
+    Then A success Message is displayed                                                                                      # ContactUsPageStepDefs.a_success_Message_is_displayed()
+
+  Scenario: Test the form's validation by submitting it with missing or incorrect information in one or more fields. # Feature Files/SovTechFeatures/ContactUsFeature.feature:22
+    Given Given the User is on the contact us page                                                                   # ContactUsPageStepDefs.given_the_User_is_on_the_contact_us_page()
+    When The user clicks on the Send message button                                                                  # ContactUsPageStepDefs.the_user_clicks_on_the_Send_message_button()
+    Then Then verify if errors are being displayed                                                                   # ContactUsPageStepDefs.thenVerifyIfErrorsAreBeingDisplayed()
+
+  Scenario Outline: Verify that the form displays an error message when submitted without a valid email address. # Feature Files/SovTechFeatures/ContactUsFeature.feature:28
+    Given Given the User is on the contact us page
+    And User Enter Full Name "<FullName>"
+    And User Enter email "<Email>"
+    And User Enter Mobile number "<MobileNumber>"
+    And User Selects Company size "<CompanySize>"
+    And User Selects the type of service "<Services>"
+    And User Enter how can we help you text "<HelpText>"
+    Then Verify expected error "<ErrorMessage>"
+
+    Examples: 
+
+  @run
+  Scenario Outline: Verify that the form displays an error message when submitted without a valid email address. # Feature Files/SovTechFeatures/ContactUsFeature.feature:41
+    Given Given the User is on the contact us page                                                               # ContactUsPageStepDefs.given_the_User_is_on_the_contact_us_page()
+    And User Enter Full Name "Farisani Nonyana"                                                                  # ContactUsPageStepDefs.user_Enter_Full_Name(String)
+    And User Enter email "rofgmail.com"                                                                          # ContactUsPageStepDefs.user_Enter_email(String)
+    And User Enter Mobile number "0794188672"                                                                    # ContactUsPageStepDefs.user_Enter_Mobile_number(String)
+    And User Selects Company size "1 - 25"                                                                       # ContactUsPageStepDefs.user_Selects_Company_size(String)
+    And User Selects the type of service "Web App"                                                               # ContactUsPageStepDefs.user_Selects_the_type_of_service(String)
+    And User Enter how can we help you text "Web automation using selenium and cucumber"                         # ContactUsPageStepDefs.user_Enter_how_can_we_help_you_text(String)
+    Then Verify expected error "Email must be formatted correctly."                                              # ContactUsPageStepDefs.verifyExpectedErrors(String)
+
+  Scenario Outline: Verify that the form displays an error message when submitted with mobile number that is shorter than expected # Feature Files/SovTechFeatures/ContactUsFeature.feature:44
+    Given Given the User is on the contact us page
+    And User Enter Full Name "<FullName>"
+    And User Enter email "<Email>"
+    And User Enter Mobile number "<MobileNumber>"
+    And User Selects Company size "<CompanySize>"
+    And User Selects the type of service "<Services>"
+    And User Enter how can we help you text "<HelpText>"
+    When The user clicks on the Send message button
+    Then Verify expected error "<ErrorMessage>"
+
+    Examples: 
+
+  @run
+  Scenario Outline: Verify that the form displays an error message when submitted with mobile number that is shorter than expected # Feature Files/SovTechFeatures/ContactUsFeature.feature:58
+    Given Given the User is on the contact us page                                                                                 # ContactUsPageStepDefs.given_the_User_is_on_the_contact_us_page()
+    And User Enter Full Name "Farisani Nonyana"                                                                                    # ContactUsPageStepDefs.user_Enter_Full_Name(String)
+    And User Enter email "rof@gmail.com"                                                                                           # ContactUsPageStepDefs.user_Enter_email(String)
+    And User Enter Mobile number "07941"                                                                                           # ContactUsPageStepDefs.user_Enter_Mobile_number(String)
+    And User Selects Company size "1 - 25"                                                                                         # ContactUsPageStepDefs.user_Selects_Company_size(String)
+    And User Selects the type of service "Web App"                                                                                 # ContactUsPageStepDefs.user_Selects_the_type_of_service(String)
+    And User Enter how can we help you text "Web automation using selenium and cucumber"                                           # ContactUsPageStepDefs.user_Enter_how_can_we_help_you_text(String)
+    When The user clicks on the Send message button                                                                                # ContactUsPageStepDefs.the_user_clicks_on_the_Send_message_button()
+    Then Verify expected error "The number you entered is not in range."                                                           # ContactUsPageStepDefs.verifyExpectedErrors(String)
+
+  Scenario Outline: Verify that the form displays an error message when submitted with non numeric character on the mobile number field. # Feature Files/SovTechFeatures/ContactUsFeature.feature:60
+    Given Given the User is on the contact us page
+    And User Enter Full Name "<FullName>"
+    And User Enter email "<Email>"
+    And User Enter Mobile number "<MobileNumber>"
+    And User Selects Company size "<CompanySize>"
+    And User Selects the type of service "<Services>"
+    And User Enter how can we help you text "<HelpText>"
+    When The user clicks on the Send message button
+    Then Verify expected error "<ErrorMessage>"
+
+    Examples: 
+
+  @run
+  Scenario Outline: Verify that the form displays an error message when submitted with non numeric character on the mobile number field. # Feature Files/SovTechFeatures/ContactUsFeature.feature:74
+    Given Given the User is on the contact us page                                                                                       # ContactUsPageStepDefs.given_the_User_is_on_the_contact_us_page()
+    And User Enter Full Name "Farisani Nonyana"                                                                                          # ContactUsPageStepDefs.user_Enter_Full_Name(String)
+    And User Enter email "rof@gmail.com"                                                                                                 # ContactUsPageStepDefs.user_Enter_email(String)
+    And User Enter Mobile number "07941xy"                                                                                               # ContactUsPageStepDefs.user_Enter_Mobile_number(String)
+    And User Selects Company size "1 - 25"                                                                                               # ContactUsPageStepDefs.user_Selects_Company_size(String)
+    And User Selects the type of service "Web App"                                                                                       # ContactUsPageStepDefs.user_Selects_the_type_of_service(String)
+    And User Enter how can we help you text "Web automation using selenium and cucumber"                                                 # ContactUsPageStepDefs.user_Enter_how_can_we_help_you_text(String)
+    When The user clicks on the Send message button                                                                                      # ContactUsPageStepDefs.the_user_clicks_on_the_Send_message_button()
+    Then Verify expected error "Must contain only numbers, +()-. and x."                                                                 # ContactUsPageStepDefs.verifyExpectedErrors(String)
